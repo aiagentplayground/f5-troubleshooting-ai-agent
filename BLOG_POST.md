@@ -32,7 +32,7 @@ Together, they create a powerful pattern: AI agents that can observe and interac
 
 ## Architecture: How It All Fits Together
 
-![kagent x F5 BIG-IP Integration](k8s/architecture-diagram.png)
+![kagent x F5 BIG-IP Integration](f5troubleshooting.gif)
 
 Here's how the components work together:
 
