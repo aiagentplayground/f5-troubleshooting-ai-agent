@@ -1,0 +1,11 @@
+apiVersion: kagent.dev/v1alpha2
+kind: RemoteMCPServer
+metadata:
+  name: f5-mcp-remote
+  namespace: kagent
+spec:
+  description: F5 BIG-IP MCP Server - Query F5 LTM objects like pools, nodes, and virtual servers
+  url: http://f5-mcp-server.kagent.svc.cluster.local:8081/mcp
+  protocol: STREAMABLE_HTTP
+  timeout: 30s
+  terminateOnClose: false

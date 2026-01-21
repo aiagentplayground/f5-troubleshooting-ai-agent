@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f5-mcp-server
+  namespace: kagent
+  labels:
+    app: f5-mcp-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: f5-mcp-server
+  template:
+    metadata:
+      labels:
+        app: f5-mcp-server
+    spec:
+      containers:
+      - name: f5-mcp
+        image: sebbycorp/f5-mcp-server:latest
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+        env:
+        - name: F5_HOST
+          valueFrom:
+            secretKeyRef:
+              name: f5-credentials
+              key: F5_HOST
+        - name: F5_USER
+          valueFrom:
+            secretKeyRef:
+              name: f5-credentials
+              key: F5_USER
+        - name: F5_PASS
+          valueFrom:
+            secretKeyRef:
+              name: f5-credentials
+              key: F5_PASS
+        - name: F5_VERIFY_SSL
+          value: "false"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
