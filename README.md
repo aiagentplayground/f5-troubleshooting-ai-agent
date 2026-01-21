@@ -4,7 +4,7 @@ Deploy the F5 BIG-IP MCP Server to your Kubernetes cluster with kagent integrati
 
 ## Architecture
 
-![kagent x F5 BIG-IP Integration](architecture-diagram.png)
+![kagent x F5 BIG-IP Integration](image.png)
 
 The architecture consists of:
 
